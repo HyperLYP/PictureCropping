@@ -1,14 +1,14 @@
 import tensorflow as tf
 import cv2 
 #读取图片 
-img_data_tf = tf.read_file('datasets/7_3_1_1_input/1.jpg')
+img_data_tf = tf.io.read_file('datasets/7_3_1_1_input/1.jpg')
 img_tf = tf.image.decode_jpeg(img_data_tf, channels=3)
 #对原始数据解码，并裁剪指定去
 decode_and_crop_tf = tf.image.decode_and_crop_jpeg(img_data_tf,[0,0,224,224])
 crop_to_bb_tf = tf.image.crop_to_bounding_box(img_tf,224,224,224,224)
 central_crop_tf = tf.image.central_crop(img_tf,0.5)
 
-with tf.Session() as sess:
+with tf.compat.v1.Session() as sess:
     
     img,decode_crop,crop_bb,central_crop = sess.run([img_tf,
                                                      decode_and_crop_tf,
