@@ -1,4 +1,5 @@
 import tensorflow as tf
+tf.compat.v1.disable_eager_execution()
 import cv2 
 #读取图片 
 img_data_tf = tf.io.read_file('datasets/7_3_1_1_input/1.jpg')
